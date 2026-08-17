@@ -1,9 +1,4 @@
 # SideMamba
-
-Official research code for **SideMamba**, an efficient side-network framework for video-text retrieval. SideMamba transfers the spatial and semantic priors of a pretrained CLIP model to a lightweight state-space branch, enabling spatiotemporal video modeling without fully fine-tuning a large video backbone.
-
-> This repository is currently being cleaned for public release. Configuration paths and dependency versions may still need to be adapted to your environment.
-
 ## Overview
 
 Video-text retrieval requires both strong image-language knowledge and effective temporal modeling. SideMamba keeps a pretrained CLIP encoder as the main branch and inserts a compact Mamba-based side branch at selected visual Transformer layers. The two branches exchange features progressively, and the resulting video representation is matched with text using a fine-grained bidirectional retrieval objective.
@@ -14,9 +9,7 @@ The method contains three main components:
 - **Prior-Guided Dynamic Incremental Learning (PGDIL).** Top-down priors from intermediate CLIP layers are injected into the SideMamba branch with learnable fusion gates. Bottom-up dynamic aggregation updates the global token from local features at every side layer.
 - **Progressive Spatiotemporal Alignment (PSA).** Progressively fused video features are aligned with text through fine-grained token-frame interaction and a bidirectional contrastive retrieval loss.
 
-The implementation supports **MSVD**, **MSR-VTT**, and **DiDeMo**, and reports standard text-to-video and video-to-text retrieval metrics such as R@1, R@5, R@10, and their sum.
-
-Manuscript: [Overleaf read-only project](https://cn.overleaf.com/read/jpjwpcyvfqzj#7875ca)
+[//]: # (Manuscript: [Overleaf read-only project]&#40;https://cn.overleaf.com/read/jpjwpcyvfqzj#7875ca&#41;)
 
 ## Code structure
 
@@ -57,28 +50,18 @@ A Linux environment with an NVIDIA GPU is recommended. The main dependencies are
 - complexPyTorch;
 - Triton and/or a compatible selective-scan CUDA extension for accelerated training.
 
-An example installation is:
-
-```bash
-conda create -n sidemamba python=3.10 -y
-conda activate sidemamba
-
-# Install a PyTorch build appropriate for your CUDA environment first.
-pip install torch torchvision
-
-pip install \
-  pytorch-lightning sacred transformers timm einops \
-  numpy pandas opencv-python pillow tqdm ftfy regex \
-  torchmetrics tensorboard thop torchinfo complexPyTorch triton
-```
 
 The selective-scan implementation automatically falls back to a PyTorch version when the CUDA operators are unavailable. The fallback is useful for debugging but is considerably slower.
 
+The installation of mamba_ssm is following 
+[VMamba](https://github.com/MzeroMiko/VMamba)
 ## Pretrained model
 
-Download the OpenAI CLIP checkpoint used by the selected encoder and place it under the pretrained-model root. For the ViT-L/14 configuration used in the example below:
+Download the OpenAI CLIP checkpoint: [ViT-B/16](https://openaipublic.azureedge.net/clip/models/5806e77cd80f8b59890b7e101eabd078d9fb84e6937f9e85e4ecb61988df416f/ViT-B-16.pt)
+and
+[ViT-L/14](https://openaipublic.azureedge.net/clip/models/b8cca3fd41ae0c99ba7e8951adf17d267cdb84cd88be6f7c2e0eca1737a03836/ViT-L-14.pt)
 
-Other encoder configurations expect the corresponding filenames defined in `src/config/retrieval/encoder_ingredient.py`, for example `ViT-B-16.pt` or `ViT-B-32.pt`.
+The weights of SiM will be released soon.
 
 ## Data preparation
 
@@ -90,7 +73,10 @@ The processed data used by this project follows [Cap4Video](https://github.com/w
 - **MSVD:** use the pre-extracted video frames provided by Cap4Video.
 - **DiDeMo:** prepare the frame data from the original videos with the `video2image.py` script provided by Cap4Video. The generated frames should be organized by video ID as shown below.
 
-Please follow the download and preprocessing instructions in the Cap4Video repository and comply with the licenses and terms of the original datasets.
+You can also directly download the datasets from our links:
+[MSR-VTT](),
+[MSVD](),
+[DiDeMo]()
 
 Set `data_root` to a directory containing one or more prepared datasets. The expected MSVD layout is:
 
