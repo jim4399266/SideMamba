@@ -61,7 +61,7 @@ Download the OpenAI CLIP checkpoint: [ViT-B/16](https://openaipublic.azureedge.n
 and
 [ViT-L/14](https://openaipublic.azureedge.net/clip/models/b8cca3fd41ae0c99ba7e8951adf17d267cdb84cd88be6f7c2e0eca1737a03836/ViT-L-14.pt)
 
-The weights of SiM will be released soon.
+The weights of SiM can be downloaded from [BaiDu Driver](https://pan.baidu.com/s/1iv32gXNbb0zwWFArKEBn0g?pwd=hg63).
 
 ## Data preparation
 
