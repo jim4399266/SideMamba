@@ -74,9 +74,9 @@ The processed data used by this project follows [Cap4Video](https://github.com/w
 - **DiDeMo:** prepare the frame data from the original videos with the `video2image.py` script provided by Cap4Video. The generated frames should be organized by video ID as shown below.
 
 You can also directly download the datasets from our links:
-[MSR-VTT](),
-[MSVD](),
-[DiDeMo]()
+[MSR-VTT](https://pan.baidu.com/s/18bSlEOU6KPYDSb6gAX9ybA?pwd=np83),
+[MSVD](https://pan.baidu.com/s/1tB_GKH7GJnh2hFa54IrnEw?pwd=drmi),
+[DiDeMo](https://pan.baidu.com/s/1tjeavoP24ly7rJ5eYcyeDw?pwd=fmre)
 
 Set `data_root` to a directory containing one or more prepared datasets. The expected MSVD layout is:
 
